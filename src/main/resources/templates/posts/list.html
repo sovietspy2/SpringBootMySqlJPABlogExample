@@ -1,0 +1,40 @@
+<div th:switch="${posts}" xmlns:th="http://www.w3.org/1999/html">
+    <h2 th:case="null">No posts yet!</h2>
+    <div th:case="*">
+        <h2>Posts</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Text</th>
+                <th>Comments</th>
+                <th>Tags</th>
+                <th>User</th>
+                <th>Edit</th>
+                <th>Delete</th>
+                <th>Add comment</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="post : ${posts}">
+                <td th:text="${post.title}"></td>
+                <td th:text="${post.text}"></td>
+                <td>
+                    <th:block th:each="comment : ${post.comments}">
+                        <span th:text="${comment.text}"></span>
+                    </th:block>
+                </td>
+                <td>
+                    <th:block th:each="tag : ${post.tags}">
+                        <span th:text="${tag.name}"></span>
+                    </th:block>
+                </td>
+                <td th:text="${post.user.name}"></td>
+                <td><a th:href="@{/edit_post/{id}(id=${post.id})}">Edit</a></td>
+                <td><a th:href="@{/delete_post/{id}(id=${post.id})}">Delete</a></td>
+                <td><a th:href="@{/add_comment/{id}(id=${post.id})}">Add Comment</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

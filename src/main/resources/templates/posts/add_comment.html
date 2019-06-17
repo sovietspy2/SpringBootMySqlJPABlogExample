@@ -1,0 +1,11 @@
+<form action="#" th:action="@{/save_comment/{dd}(dd=${post.id})}" th:object="${comment}" method="post">
+    <label for="name">text</label>
+    <input type="text" th:field="*{text}" id="name" placeholder="Name">
+
+    <select th:field="*{user}">
+        <option th:each="u : ${users}"
+                th:value="${u.id}"
+                th:utext="${u.name}"/>
+    </select>
+    <input type="submit" value="Create">
+</form>

@@ -1,0 +1,14 @@
+<form action="#" th:action="@{/post_save}" th:object="${post}" method="post">
+    <label for="name">Title</label>
+    <input type="text" th:field="*{title}" id="name" placeholder="Name">
+    <label for="text">Text</label>
+    <input type="text" th:field="*{text}" id="text" placeholder="text">
+
+    <select th:field="*{user}">
+        <option th:each="u : ${users}"
+                th:value="${u.id}"
+                th:utext="${u.name}"/>
+    </select>
+
+    <input type="submit" value="Create">
+</form>
