@@ -1,0 +1,20 @@
+
+<table>
+    <th:block th:each="user : ${users}">
+        <tr>
+            <td>
+                <p th:text="${user.name}"></p>
+            </td>
+            <td>
+                <a th:href="@{/delete_user/{id}(id=${user.id})}">X</a>
+            </td>
+        </tr>
+    </th:block>
+</table>
+
+
+<form action="#" th:action="@{/user_save}" th:object="${userData}" method="post">
+    <label for="name">Name</label>
+    <input type="text" th:field="*{name}" id="name" placeholder="Name">
+    <input type="submit" value="Create New">
+</form>
