@@ -10,5 +10,8 @@
                 th:utext="${u.name}"/>
     </select>
 
+    <input id="checkbox" type="checkbox" name="visible" th:checked="${post.visible}" />
+    <label for="checkbox">Visible</label>
+
     <input type="submit" value="Create">
 </form>

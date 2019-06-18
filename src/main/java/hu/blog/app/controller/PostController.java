@@ -2,6 +2,7 @@ package hu.blog.app.controller;
 
 import hu.blog.app.model.Comment;
 import hu.blog.app.model.Post;
+import hu.blog.app.model.PostEditForm;
 import hu.blog.app.services.CommentService;
 import hu.blog.app.services.PostService;
 import hu.blog.app.services.UserService;
@@ -35,7 +36,9 @@ public class PostController {
     }
 
     @GetMapping("/edit_post/{id}")
-    public String edit() {
+    public String edit(@PathVariable Integer id, Model model) throws Exception {
+        PostEditForm post = postService.getFormData(id);
+        model.addAttribute("post", post);
         return "posts/edit";
     }
 
@@ -49,6 +52,12 @@ public class PostController {
     @PostMapping("/post_save")
     private String savePost(@ModelAttribute Post post) {
         postService.savePost(post);
+        return "redirect:/";
+    }
+
+    @PostMapping("/post_save_edit/{id}")
+    private String savePost(@PathVariable Integer id, @ModelAttribute PostEditForm post) {
+        postService.savePost(id, post);
         return "redirect:/";
     }
 

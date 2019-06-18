@@ -1,7 +1,9 @@
-<form action="#" th:action="@{/post_save" th:object="${post}" method="post">
+<form action="#" th:action="@{/post_save_edit/{id}(id=${post.id})}" th:object="${post}" method="post">
     <label for="name">Title</label>
-    <input type="text" th:field="*{name}" id="name" placeholder="Name">
+    <input type="text" th:field="${post.title}" id="name" placeholder="Name">
     <label for="text">Text</label>
-    <input type="textarea" th:field="*{text}" id="text" placeholder="text">
-    <input type="submit" value="Create">
+    <input type="text" th:field="${post.text}" id="text" placeholder="text">
+    <input id="checkbox" type="checkbox" name="visible" th:checked="${post.visible}" />
+    <label for="checkbox">Visible</label>
+    <input type="submit" value="Save">
 </form>
